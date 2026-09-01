@@ -21,19 +21,15 @@ function Get-Orientation([System.Drawing.Image]$img) {
 }
 
 function Rotate-Image([System.Drawing.Bitmap]$src, [int]$degrees) {
-    $w = if ($degrees % 180 -eq 0) { $src.Width } else { $src.Height }
-    $h = if ($degrees % 180 -eq 0) { $src.Height } else { $src.Width }
-    $out = New-Object System.Drawing.Bitmap($w, $h)
-    $g = [System.Drawing.Graphics]::FromImage($out)
-    $g.Clear([System.Drawing.Color]::White)
-    switch ($degrees) {
-        90  { $g.TranslateTransform($w, 0);  $g.RotateTransform(90) }
-        180 { $g.TranslateTransform($w, $h); $g.RotateTransform(180) }
-        270 { $g.TranslateTransform(0, $h);  $g.RotateTransform(270) }
+    $flip = switch ($degrees) {
+        90  { [System.Drawing.RotateFlipType]::Rotate90FlipNone }
+        180 { [System.Drawing.RotateFlipType]::Rotate180FlipNone }
+        270 { [System.Drawing.RotateFlipType]::Rotate270FlipNone }
+        default { [System.Drawing.RotateFlipType]::RotateNoneFlipNone }
     }
-    $g.DrawImageUnscaled($src, 0, 0)
-    $g.Dispose()
-    return $out
+    $copy = New-Object System.Drawing.Bitmap($src)
+    $copy.RotateFlip($flip)
+    return $copy
 }
 
 $files = Get-ChildItem -Path $srcDir -File | Where-Object { $_.Extension.ToLower() -in '.jpg', '.jpeg' }
