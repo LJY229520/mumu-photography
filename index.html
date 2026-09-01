@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>木木摄影｜女生独拍 · 情侣拍照 · 闺蜜拍照</title>
+<meta name="description" content="独立女摄木木，可接女生独拍、情侣拍照、闺蜜拍照。佳能R50 + 小痰盂镜头拍摄，样片与报价见页面。">
+<meta name="theme-color" content="#faf7f2">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%B7%3C/text%3E%3C/svg%3E">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+  background: #faf7f2;
+  color: #33261f;
+  line-height: 1.6;
+}
+
+/* ===== 顶部信息 ===== */
+.hero {
+  padding: 36px 20px 26px;
+  text-align: center;
+  background: linear-gradient(180deg, #f6ede4 0%, #faf7f2 100%);
+}
+.avatar {
+  width: 88px; height: 88px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #d98b76, #c46554);
+  color: #fff;
+  font-size: 40px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 10px 26px rgba(196, 101, 84, .30);
+}
+h1 { font-size: 26px; font-weight: 800; letter-spacing: 1px; }
+.badge {
+  display: inline-block;
+  font-size: 12px; font-weight: 500;
+  color: #c46554; background: #fff;
+  border: 1px solid #eac9bd;
+  padding: 2px 12px; border-radius: 999px;
+  vertical-align: middle; margin-left: 6px;
+}
+.slogan { color: #8a6f63; font-size: 14px; margin-top: 6px; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 14px; }
+.tags span {
+  background: #fff; border: 1px solid #eadfd6; color: #6f5547;
+  font-size: 13px; padding: 4px 14px; border-radius: 999px;
+}
+.gear { font-size: 12.5px; color: #8a6f63; margin-top: 8px; }
+.contacts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 18px; max-width: 560px; margin-left: auto; margin-right: auto; }
+.contact {
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  background: #fff; border: 1px solid #ecdfd5; border-radius: 14px;
+  padding: 12px 6px; text-decoration: none; color: #33261f;
+  font-size: 12px; cursor: pointer; transition: transform .15s ease, box-shadow .15s ease;
+}
+.contact:active { transform: scale(.96); }
+.contact .ic { font-size: 20px; }
+.contact b { font-size: 13px; color: #c46554; }
+.contact span { color: #8a6f63; font-size: 11px; word-break: break-all; }
+
+/* ===== 标签页 ===== */
+.tabs {
+  display: flex; gap: 10px; justify-content: center;
+  padding: 16px 20px 4px;
+  position: sticky; top: 0; z-index: 20;
+  background: rgba(250, 247, 242, .94);
+  backdrop-filter: blur(8px);
+}
+.tab {
+  flex: 1; max-width: 240px;
+  padding: 12px 0;
+  border-radius: 999px;
+  border: 1.5px solid #d9c3b8;
+  background: #fff; color: #6f5547;
+  font-size: 15px; font-weight: 600;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+.tab.active {
+  background: linear-gradient(135deg, #d98b76, #c46554);
+  color: #fff; border-color: transparent;
+  box-shadow: 0 6px 18px rgba(196, 101, 84, .30);
+}
+.panel { padding: 8px 0 48px; }
+
+/* ===== 样片模块 ===== */
+.module { margin-top: 26px; }
+.module-head { display: flex; align-items: baseline; gap: 10px; padding: 0 20px; }
+.module-title {
+  font-size: 19px; font-weight: 800; letter-spacing: 2px;
+  display: flex; align-items: center; gap: 8px;
+}
+.module-title::before {
+  content: ""; width: 5px; height: 18px; border-radius: 3px;
+  background: linear-gradient(180deg, #d98b76, #c46554);
+}
+.module-count { font-size: 12px; color: #a4877a; }
+.strip-wrap { position: relative; margin-top: 12px; }
+.strip {
+  display: flex; gap: 12px;
+  overflow-x: auto;
+  padding: 4px 20px 14px;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+}
+.strip::-webkit-scrollbar { display: none; }
+.card {
+  flex: 0 0 auto;
+  height: clamp(280px, 55vw, 440px);
+  min-width: 140px;
+  scroll-snap-align: start;
+  border-radius: 14px; overflow: hidden;
+  background: #ece4dc;
+  box-shadow: 0 8px 24px rgba(60, 40, 30, .12);
+  cursor: zoom-in;
+}
+.card img {
+  height: 100%; width: auto;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+.arrow {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 38px; height: 38px; border-radius: 50%;
+  border: none; background: rgba(255, 255, 255, .92);
+  color: #6f5547; font-size: 20px; line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .18);
+  cursor: pointer; z-index: 2;
+  opacity: 0; transition: opacity .2s ease;
+}
+.strip-wrap:hover .arrow { opacity: 1; }
+.arrow.prev { left: 10px; }
+.arrow.next { right: 10px; }
+@media (hover: none) { .arrow { display: none; } }
+
+/* ===== 报价表 ===== */
+.price-wrap {
+  padding: 22px 20px 0;
+  max-width: 760px; margin: 0 auto;
+  display: grid; gap: 14px;
+}
+@media (min-width: 640px) { .price-wrap { grid-template-columns: 1fr 1fr; } }
+.price-card {
+  background: #fff; border: 1px solid #ecdfd5; border-radius: 18px;
+  padding: 24px 22px;
+  box-shadow: 0 8px 24px rgba(60, 40, 30, .06);
+}
+.price-card .name { font-size: 18px; font-weight: 800; }
+.price-card .meta {
+  display: inline-block; margin-top: 8px;
+  background: #fbece7; color: #c46554;
+  font-size: 12px; font-weight: 600;
+  padding: 3px 12px; border-radius: 999px;
+}
+.price-card ul { list-style: none; margin-top: 12px; }
+.price-card li { font-size: 14px; color: #6f5547; padding: 4px 0; }
+.price-card li::before { content: "✓  "; color: #c46554; font-weight: 700; }
+.price { margin-top: 14px; font-size: 30px; font-weight: 800; }
+.price small { font-size: 13px; color: #a4877a; font-weight: 500; }
+.note {
+  grid-column: 1 / -1;
+  text-align: center; color: #a4877a; font-size: 13px;
+  padding: 4px 0 0;
+}
+.cta {
+  grid-column: 1 / -1;
+  justify-self: center;
+  margin: 8px auto 0;
+  padding: 13px 36px;
+  border: none; border-radius: 999px;
+  background: linear-gradient(135deg, #d98b76, #c46554);
+  color: #fff; font-size: 15px; font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(196, 101, 84, .30);
+}
+.cta:active { transform: scale(.97); }
+
+/* ===== 页脚 / 弹层 / 提示 ===== */
+footer {
+  text-align: center; padding: 10px 20px 44px;
+  color: #a4877a; font-size: 12px; line-height: 2;
+}
+.lightbox {
+  position: fixed; inset: 0; z-index: 100;
+  background: rgba(18, 13, 11, .94);
+  display: flex; align-items: center; justify-content: center;
+}
+.lightbox img {
+  max-width: 94vw; max-height: 84vh;
+  object-fit: contain; border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .5);
+}
+.lb-btn {
+  position: absolute;
+  width: 42px; height: 42px; border-radius: 50%;
+  border: none; background: rgba(255, 255, 255, .14);
+  color: #fff; font-size: 22px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: background .15s ease;
+}
+.lb-btn:hover { background: rgba(255, 255, 255, .26); }
+.lb-close { top: 16px; right: 16px; }
+.lb-prev { left: 12px; }
+.lb-next { right: 12px; }
+.lb-caption {
+  position: absolute; left: 0; right: 0; bottom: 18px;
+  text-align: center; color: #e9ddd5; font-size: 13px;
+  pointer-events: none;
+}
+.toast {
+  position: fixed; left: 50%; bottom: 76px; z-index: 200;
+  transform: translateX(-50%) translateY(16px);
+  background: rgba(42, 30, 24, .92); color: #fff;
+  padding: 10px 20px; border-radius: 999px;
+  font-size: 13px; opacity: 0;
+  transition: all .25s ease;
+  pointer-events: none;
+  max-width: 86vw;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="avatar">木</div>
+  <h1>木木<span class="badge">独立女摄</span></h1>
+  <p class="slogan">用镜头记录你的美好瞬间</p>
+  <div class="tags">
+    <span>女生独拍</span>
+    <span>情侣拍照</span>
+    <span>闺蜜拍照</span>
+  </div>
+  <p class="gear">📷 佳能R50 · 小痰盂镜头 · 套机头</p>
+  <p class="gear">星光滤镜 · 柔光滤镜 · 反光板 · 补光灯</p>
+  <div class="contacts">
+    <a class="contact" href="tel:15513257191">
+      <span class="ic">📞</span><b>电话</b><span>15513257191</span>
+    </a>
+    <button class="contact" data-copy="9536764310" data-label="小红书号">
+      <span class="ic">📕</span><b>小红书</b><span>9536764310</span>
+    </button>
+    <button class="contact" data-copy="ljy345520" data-label="微信号">
+      <span class="ic">💬</span><b>微信</b><span>ljy345520</span>
+    </button>
+  </div>
+</header>
+
+<nav class="tabs">
+  <button class="tab active" data-panel="gallery">样片展示</button>
+  <button class="tab" data-panel="price">报价表</button>
+</nav>
+
+<main>
+  <section id="gallery" class="panel"></section>
+
+  <section id="price" class="panel" hidden>
+    <div class="price-wrap">
+      <div class="price-card">
+        <div class="name">女生单独照</div>
+        <span class="meta">⏱ 2 小时</span>
+        <ul>
+          <li>底片全送</li>
+          <li>10 张精修</li>
+        </ul>
+        <div class="price">¥100<small> / 单次</small></div>
+      </div>
+      <div class="price-card">
+        <div class="name">闺蜜 / 情侣照</div>
+        <span class="meta">⏱ 2 小时</span>
+        <ul>
+          <li>底片全送</li>
+          <li>10 张精修</li>
+        </ul>
+        <div class="price">¥120<small> / 单次</small></div>
+      </div>
+      <p class="note">其他要求（时长、人数、风格等）可单独商量价格，欢迎私信沟通～</p>
+      <button class="cta" data-copy="ljy345520" data-label="微信号">添加微信咨询预约</button>
+    </div>
+  </section>
+</main>
+
+<footer>
+  木木摄影 · 独立女摄<br>
+  电话 15513257191 · 小红书 9536764310 · 微信 ljy345520
+</footer>
+
+<div class="lightbox" id="lightbox" hidden>
+  <button class="lb-btn lb-close" id="lbClose" aria-label="关闭">×</button>
+  <button class="lb-btn lb-prev" id="lbPrev" aria-label="上一张">‹</button>
+  <img id="lbImg" src="" alt="样片大图">
+  <button class="lb-btn lb-next" id="lbNext" aria-label="下一张">›</button>
+  <div class="lb-caption" id="lbCaption"></div>
+</div>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ===== 样片数据（按模块） ===== */
+  var MODULES = [
+    { title: "侠女酷帅", photos: [
+      "侠女酷帅风 1.jpg", "侠女酷帅风 2.jpg", "侠女酷帅风 3.jpg",
+      "侠女酷帅风 4.jpg", "侠女酷帅风 5.jpg", "侠女酷帅风 6.jpg",
+      "侠女酷帅风 7.jpg", "侠女酷帅风 8.jpg", "侠女酷帅风 9.jpg"
+    ]},
+    { title: "古装写真", photos: [
+      "古装女 1.jpg", "古装女 2.jpg", "古装女 3.jpg",
+      "古装妈妈 1.jpg", "古装妈妈 2.jpg"
+    ]},
+    { title: "复古港风", photos: [
+      "小巷复古淞 1.jpg", "小巷复古淞 2.jpg",
+      "晚霞港风 1.jpg", "晚霞港风 2.jpg", "暗色复古小孩.jpg"
+    ]},
+    { title: "青春毕业", photos: [
+      "毕业男 1.jpg", "毕业男 2.jpg", "毕业男 3.jpg", "毕业男 4.jpg",
+      "毕业男 5.jpg", "毕业男 6.jpg", "毕业男 7.jpg"
+    ]},
+    { title: "海边明亮", photos: [
+      "海边明亮 1.jpg", "海边明亮 2.jpg", "海边明亮 3.jpg"
+    ]},
+    { title: "阳光多巴胺", photos: [
+      "阳光多巴胺 1.jpg", "阳光多巴胺 2.jpg", "阳光多巴胺 3.jpg",
+      "阳光多巴胺 4.jpg", "阳光多巴胺 5.jpg", "阳光多巴胺 6.jpg",
+      "阳光多巴胺 7.jpg", "阳光闺蜜照 1.jpg", "阳光闺蜜照 2.jpg"
+    ]},
+    { title: "自然风光", photos: [
+      "自然风景 1.jpg", "自然风景 2.jpg"
+    ]}
+  ];
+
+  /* ===== 渲染样片模块 ===== */
+  var gallery = document.getElementById("gallery");
+  var flat = [];
+
+  MODULES.forEach(function (mod, mi) {
+    var wrap = document.createElement("div");
+    wrap.className = "module";
+
+    var cards = mod.photos.map(function (p, pi) {
+      flat.push({ src: "img/" + p, title: mod.title });
+      return '<figure class="card" data-module="' + mi + '" data-index="' + pi + '">' +
+        '<img src="img/' + p + '" alt="' + mod.title + ' 样片 ' + (pi + 1) +
+        '" loading="lazy" decoding="async" draggable="false"></figure>';
+    }).join("");
+
+    wrap.innerHTML =
+      '<div class="module-head"><h2 class="module-title">' + mod.title +
+      '</h2><span class="module-count">' + mod.photos.length + ' 张</span></div>' +
+      '<div class="strip-wrap">' +
+      '<button class="arrow prev" aria-label="上一组">‹</button>' +
+      '<div class="strip">' + cards + '</div>' +
+      '<button class="arrow next" aria-label="下一组">›</button>' +
+      '</div>';
+    gallery.appendChild(wrap);
+  });
+
+  /* ===== 左右滚动按钮 ===== */
+  document.querySelectorAll(".strip-wrap").forEach(function (wrap) {
+    var strip = wrap.querySelector(".strip");
+    wrap.querySelector(".prev").addEventListener("click", function () {
+      strip.scrollBy({ left: -strip.clientWidth * 0.75, behavior: "smooth" });
+    });
+    wrap.querySelector(".next").addEventListener("click", function () {
+      strip.scrollBy({ left: strip.clientWidth * 0.75, behavior: "smooth" });
+    });
+  });
+
+  /* ===== 标签切换 ===== */
+  var panels = { gallery: document.getElementById("gallery"), price: document.getElementById("price") };
+  document.querySelectorAll(".tab").forEach(function (tab) {
+    tab.addEventListener("click", function () {
+      document.querySelectorAll(".tab").forEach(function (t) {
+        t.classList.toggle("active", t === tab);
+      });
+      panels.gallery.hidden = tab.dataset.panel !== "gallery";
+      panels.price.hidden = tab.dataset.panel !== "price";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  });
+
+  /* ===== 大图查看 ===== */
+  var lightbox = document.getElementById("lightbox");
+  var lbImg = document.getElementById("lbImg");
+  var lbCaption = document.getElementById("lbCaption");
+  var lbClose = document.getElementById("lbClose");
+  var lbPrev = document.getElementById("lbPrev");
+  var lbNext = document.getElementById("lbNext");
+  var current = -1;
+
+  function openLightbox(i) {
+    if (i < 0) i = flat.length - 1;
+    if (i >= flat.length) i = 0;
+    current = i;
+    lbImg.src = flat[i].src;
+    lbCaption.textContent = flat[i].title + " · " + (i + 1) + " / " + flat.length;
+    lightbox.hidden = false;
+    document.body.style.overflow = "hidden";
+  }
+  function closeLightbox() {
+    lightbox.hidden = true;
+    document.body.style.overflow = "";
+    lbImg.src = "";
+  }
+  lbClose.addEventListener("click", closeLightbox);
+  lbPrev.addEventListener("click", function () { openLightbox(current - 1); });
+  lbNext.addEventListener("click", function () { openLightbox(current + 1); });
+  lightbox.addEventListener("click", function (e) {
+    if (e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener("keydown", function (e) {
+    if (lightbox.hidden) return;
+    if (e.key === "Escape") closeLightbox();
+    if (e.key === "ArrowLeft") openLightbox(current - 1);
+    if (e.key === "ArrowRight") openLightbox(current + 1);
+  });
+
+  /* 触摸滑动切换 */
+  var touchX = null;
+  lightbox.addEventListener("touchstart", function (e) {
+    touchX = e.changedTouches[0].clientX;
+  }, { passive: true });
+  lightbox.addEventListener("touchend", function (e) {
+    if (touchX === null) return;
+    var dx = e.changedTouches[0].clientX - touchX;
+    touchX = null;
+    if (dx < -40) openLightbox(current + 1);
+    if (dx > 40) openLightbox(current - 1);
+  }, { passive: true });
+
+  /* 点击卡片打开大图（区分滚动拖动） */
+  var pressAt = null;
+  document.addEventListener("pointerdown", function (e) {
+    var card = e.target.closest(".card");
+    if (card) pressAt = { x: e.clientX, y: e.clientY };
+  }, { passive: true });
+  document.addEventListener("pointerup", function (e) {
+    var card = e.target.closest(".card");
+    if (!card || !pressAt) return;
+    var dx = Math.abs(e.clientX - pressAt.x);
+    var dy = Math.abs(e.clientY - pressAt.y);
+    pressAt = null;
+    if (dx < 8 && dy < 8) {
+      var mi = parseInt(card.dataset.module, 10);
+      var pi = parseInt(card.dataset.index, 10);
+      var gi = 0;
+      for (var m = 0; m < mi; m++) gi += MODULES[m].photos.length;
+      openLightbox(gi + pi);
+    }
+  }, { passive: true });
+
+  /* ===== 复制联系方式 ===== */
+  var toast = document.getElementById("toast");
+  var toastTimer = null;
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toast.classList.remove("show"); }, 2200);
+  }
+  function copyText(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(text).then(function () { return true; }, function () {
+        return legacyCopy(text);
+      });
+    }
+    return Promise.resolve(legacyCopy(text));
+  }
+  function legacyCopy(text) {
+    var ta = document.createElement("textarea");
+    ta.value = text;
+    ta.style.position = "fixed";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.select();
+    var ok = false;
+    try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+    ta.remove();
+    return ok;
+  }
+  document.querySelectorAll("[data-copy]").forEach(function (el) {
+    el.addEventListener("click", function () {
+      var text = el.dataset.copy;
+      var label = el.dataset.label || "内容";
+      copyText(text).then(function (ok) {
+        showToast(ok ? "已复制" + label + "：" + text : label + "：" + text);
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>
