@@ -341,6 +341,9 @@ footer {
 (function () {
   "use strict";
 
+  /* 图片版本号：改图后 +1 可强制刷新缓存 */
+  var IMG_V = "v=2";
+
   /* ===== 样片数据（按模块） ===== */
   var MODULES = [
     { title: "侠女酷帅", photos: [
@@ -382,9 +385,9 @@ footer {
     wrap.className = "module";
 
     var cards = mod.photos.map(function (p, pi) {
-      flat.push({ src: "img/" + p, title: mod.title });
+      flat.push({ src: "img/" + p + "?" + IMG_V, title: mod.title });
       return '<figure class="card" data-module="' + mi + '" data-index="' + pi + '">' +
-        '<img src="img/' + p + '" alt="' + mod.title + ' 样片 ' + (pi + 1) +
+        '<img src="img/' + p + "?" + IMG_V + '" alt="' + mod.title + ' 样片 ' + (pi + 1) +
         '" loading="lazy" decoding="async" draggable="false"></figure>';
     }).join("");
 
