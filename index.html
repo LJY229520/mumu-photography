@@ -16,6 +16,7 @@ body {
   color: #33261f;
   line-height: 1.6;
 }
+[hidden] { display: none !important; }
 
 /* ===== 顶部信息 ===== */
 .hero {
@@ -85,6 +86,10 @@ h1 { font-size: 26px; font-weight: 800; letter-spacing: 1px; }
   box-shadow: 0 6px 18px rgba(196, 101, 84, .30);
 }
 .panel { padding: 8px 0 48px; }
+.home-hint {
+  text-align: center; color: #a4877a; font-size: 13px;
+  padding: 44px 20px 60px;
+}
 
 /* ===== 样片模块 ===== */
 .module { margin-top: 26px; }
@@ -187,13 +192,22 @@ footer {
 }
 .lightbox {
   position: fixed; inset: 0; z-index: 100;
-  background: rgba(18, 13, 11, .94);
+  background: #171210;
   display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.lb-bg {
+  position: absolute; inset: -24px;
+  background: center / cover no-repeat;
+  filter: blur(22px) brightness(.55);
+  transform: scale(1.05);
+  z-index: 0;
 }
 .lightbox img {
-  max-width: 94vw; max-height: 84vh;
-  object-fit: contain; border-radius: 8px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, .5);
+  position: relative; z-index: 1;
+  max-width: 96vw; max-height: 90vh;
+  object-fit: contain; border-radius: 6px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .45);
 }
 .lb-btn {
   position: absolute;
@@ -202,6 +216,7 @@ footer {
   color: #fff; font-size: 22px;
   display: flex; align-items: center; justify-content: center;
   cursor: pointer; transition: background .15s ease;
+  z-index: 2;
 }
 .lb-btn:hover { background: rgba(255, 255, 255, .26); }
 .lb-close { top: 16px; right: 16px; }
@@ -211,6 +226,7 @@ footer {
   position: absolute; left: 0; right: 0; bottom: 18px;
   text-align: center; color: #e9ddd5; font-size: 13px;
   pointer-events: none;
+  z-index: 2;
 }
 .toast {
   position: fixed; left: 50%; bottom: 76px; z-index: 200;
@@ -252,12 +268,14 @@ footer {
 </header>
 
 <nav class="tabs">
-  <button class="tab active" data-panel="gallery">样片展示</button>
+  <button class="tab" data-panel="gallery">样片展示</button>
   <button class="tab" data-panel="price">报价表</button>
 </nav>
 
+<p class="home-hint" id="homeHint">👆 点击上方按钮，查看样片或报价</p>
+
 <main>
-  <section id="gallery" class="panel"></section>
+  <section id="gallery" class="panel" hidden></section>
 
   <section id="price" class="panel" hidden>
     <div class="price-wrap">
@@ -291,6 +309,7 @@ footer {
 </footer>
 
 <div class="lightbox" id="lightbox" hidden>
+  <div class="lb-bg" id="lbBg"></div>
   <button class="lb-btn lb-close" id="lbClose" aria-label="关闭">×</button>
   <button class="lb-btn lb-prev" id="lbPrev" aria-label="上一张">‹</button>
   <img id="lbImg" src="" alt="样片大图">
@@ -375,19 +394,28 @@ footer {
 
   /* ===== 标签切换 ===== */
   var panels = { gallery: document.getElementById("gallery"), price: document.getElementById("price") };
+  var homeHint = document.getElementById("homeHint");
   document.querySelectorAll(".tab").forEach(function (tab) {
     tab.addEventListener("click", function () {
+      var wasActive = tab.classList.contains("active");
       document.querySelectorAll(".tab").forEach(function (t) {
-        t.classList.toggle("active", t === tab);
+        t.classList.remove("active");
       });
-      panels.gallery.hidden = tab.dataset.panel !== "gallery";
-      panels.price.hidden = tab.dataset.panel !== "price";
+      panels.gallery.hidden = true;
+      panels.price.hidden = true;
+      homeHint.hidden = false;
+      if (!wasActive) {
+        tab.classList.add("active");
+        panels[tab.dataset.panel].hidden = false;
+        homeHint.hidden = true;
+      }
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
   });
 
   /* ===== 大图查看 ===== */
   var lightbox = document.getElementById("lightbox");
+  var lbBg = document.getElementById("lbBg");
   var lbImg = document.getElementById("lbImg");
   var lbCaption = document.getElementById("lbCaption");
   var lbClose = document.getElementById("lbClose");
@@ -400,6 +428,7 @@ footer {
     if (i >= flat.length) i = 0;
     current = i;
     lbImg.src = flat[i].src;
+    lbBg.style.backgroundImage = "url('" + flat[i].src + "')";
     lbCaption.textContent = flat[i].title + " · " + (i + 1) + " / " + flat.length;
     lightbox.hidden = false;
     document.body.style.overflow = "hidden";
@@ -408,12 +437,13 @@ footer {
     lightbox.hidden = true;
     document.body.style.overflow = "";
     lbImg.src = "";
+    lbBg.style.backgroundImage = "";
   }
   lbClose.addEventListener("click", closeLightbox);
   lbPrev.addEventListener("click", function () { openLightbox(current - 1); });
   lbNext.addEventListener("click", function () { openLightbox(current + 1); });
   lightbox.addEventListener("click", function (e) {
-    if (e.target === lightbox) closeLightbox();
+    if (e.target === lightbox || e.target === lbBg) closeLightbox();
   });
   document.addEventListener("keydown", function (e) {
     if (lightbox.hidden) return;
