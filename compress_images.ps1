@@ -43,7 +43,7 @@ $rows = foreach ($f in $files) {
     try {
         $orient = Get-Orientation $src
         if ($orient -in 3, 6, 8) {
-            $deg = @{ 3 = 180; 6 = 90; 8 = 270 }[$orient]
+            $deg = @{ 3 = 180; 6 = 90; 8 = 270 }[[int]$orient]
             $canvas = Rotate-Image ([System.Drawing.Bitmap]$src) $deg
         } else {
             $canvas = $src
