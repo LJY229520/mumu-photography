@@ -12,8 +12,11 @@
 html { scroll-behavior: smooth; }
 body {
   font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei", "Segoe UI", sans-serif;
-  background: #faf7f2;
-  color: #33261f;
+  color: #f4ece6;
+  background:
+    linear-gradient(180deg, rgba(15, 9, 13, .52) 0%, rgba(15, 9, 13, .82) 100%),
+    url("img/背景图.jpg?v=3") center / cover no-repeat fixed;
+  min-height: 100vh;
   line-height: 1.6;
 }
 [hidden] { display: none !important; }
@@ -22,72 +25,72 @@ body {
 .hero {
   padding: 36px 20px 26px;
   text-align: center;
-  background: linear-gradient(180deg, #f6ede4 0%, #faf7f2 100%);
+  background: linear-gradient(180deg, rgba(14, 8, 12, .40), rgba(14, 8, 12, 0));
 }
 .avatar {
-  width: 88px; height: 88px;
+  width: 96px; height: 96px;
   margin: 0 auto 14px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #d98b76, #c46554);
-  color: #fff;
-  font-size: 40px; font-weight: 700;
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 10px 26px rgba(196, 101, 84, .30);
+  object-fit: cover;
+  object-position: 40% 50%;
+  border: 3px solid rgba(217, 139, 118, .85);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .45);
+  display: block;
 }
-h1 { font-size: 26px; font-weight: 800; letter-spacing: 1px; }
+h1 { font-size: 26px; font-weight: 800; letter-spacing: 1px; color: #f7f0ea; }
 .badge {
   display: inline-block;
   font-size: 12px; font-weight: 500;
-  color: #c46554; background: #fff;
-  border: 1px solid #eac9bd;
+  color: #e8a390; background: rgba(217, 139, 118, .16);
+  border: 1px solid rgba(217, 139, 118, .45);
   padding: 2px 12px; border-radius: 999px;
   vertical-align: middle; margin-left: 6px;
 }
-.slogan { color: #8a6f63; font-size: 14px; margin-top: 6px; }
+.slogan { color: #cbb8ae; font-size: 14px; margin-top: 6px; }
 .tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 14px; }
 .tags span {
-  background: #fff; border: 1px solid #eadfd6; color: #6f5547;
+  background: rgba(255, 255, 255, .08); border: 1px solid rgba(255, 255, 255, .14); color: #e9dcd4;
   font-size: 13px; padding: 4px 14px; border-radius: 999px;
 }
-.gear { font-size: 12.5px; color: #8a6f63; margin-top: 8px; }
+.gear { font-size: 12.5px; color: #cbb8ae; margin-top: 8px; }
 .contacts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 18px; max-width: 560px; margin-left: auto; margin-right: auto; }
 .contact {
   display: flex; flex-direction: column; align-items: center; gap: 2px;
-  background: #fff; border: 1px solid #ecdfd5; border-radius: 14px;
-  padding: 12px 6px; text-decoration: none; color: #33261f;
+  background: rgba(255, 255, 255, .07); border: 1px solid rgba(255, 255, 255, .12); border-radius: 14px;
+  padding: 12px 6px; text-decoration: none; color: #f4ece6;
   font-size: 12px; cursor: pointer; transition: transform .15s ease, box-shadow .15s ease;
 }
 .contact:active { transform: scale(.96); }
 .contact .ic { font-size: 20px; }
-.contact b { font-size: 13px; color: #c46554; }
-.contact span { color: #8a6f63; font-size: 11px; word-break: break-all; }
+.contact b { font-size: 13px; color: #e8a390; }
+.contact span { color: #cbb8ae; font-size: 11px; word-break: break-all; }
 
 /* ===== 标签页 ===== */
 .tabs {
   display: flex; gap: 10px; justify-content: center;
   padding: 16px 20px 4px;
   position: sticky; top: 0; z-index: 20;
-  background: rgba(250, 247, 242, .94);
+  background: rgba(18, 11, 16, .80);
   backdrop-filter: blur(8px);
 }
 .tab {
   flex: 1; max-width: 240px;
   padding: 12px 0;
   border-radius: 999px;
-  border: 1.5px solid #d9c3b8;
-  background: #fff; color: #6f5547;
+  border: 1.5px solid rgba(255, 255, 255, .18);
+  background: rgba(255, 255, 255, .06); color: #e9dcd4;
   font-size: 15px; font-weight: 600;
   cursor: pointer;
   transition: all .2s ease;
 }
 .tab.active {
-  background: linear-gradient(135deg, #d98b76, #c46554);
+  background: linear-gradient(135deg, #d98b76, #a85555);
   color: #fff; border-color: transparent;
-  box-shadow: 0 6px 18px rgba(196, 101, 84, .30);
+  box-shadow: 0 6px 18px rgba(217, 139, 118, .35);
 }
 .panel { padding: 8px 0 48px; }
 .home-hint {
-  text-align: center; color: #a4877a; font-size: 13px;
+  text-align: center; color: #cbb8ae; font-size: 13px;
   padding: 44px 20px 60px;
 }
 
@@ -96,13 +99,14 @@ h1 { font-size: 26px; font-weight: 800; letter-spacing: 1px; }
 .module-head { display: flex; align-items: baseline; gap: 10px; padding: 0 20px; }
 .module-title {
   font-size: 19px; font-weight: 800; letter-spacing: 2px;
+  color: #f2e9e2;
   display: flex; align-items: center; gap: 8px;
 }
 .module-title::before {
   content: ""; width: 5px; height: 18px; border-radius: 3px;
   background: linear-gradient(180deg, #d98b76, #c46554);
 }
-.module-count { font-size: 12px; color: #a4877a; }
+.module-count { font-size: 12px; color: #bda89e; }
 .strip-wrap { position: relative; margin-top: 12px; }
 .strip {
   display: flex; gap: 12px;
@@ -118,8 +122,8 @@ h1 { font-size: 26px; font-weight: 800; letter-spacing: 1px; }
   min-width: 140px;
   scroll-snap-align: start;
   border-radius: 14px; overflow: hidden;
-  background: #ece4dc;
-  box-shadow: 0 8px 24px rgba(60, 40, 30, .12);
+  background: rgba(255, 255, 255, .08);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .35);
   cursor: zoom-in;
 }
 .card img {
@@ -131,10 +135,10 @@ h1 { font-size: 26px; font-weight: 800; letter-spacing: 1px; }
 .arrow {
   position: absolute; top: 50%; transform: translateY(-50%);
   width: 38px; height: 38px; border-radius: 50%;
-  border: none; background: rgba(255, 255, 255, .92);
-  color: #6f5547; font-size: 20px; line-height: 1;
+  border: none; background: rgba(32, 22, 28, .72);
+  color: #f2e9e2; font-size: 20px; line-height: 1;
   display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, .18);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .4);
   cursor: pointer; z-index: 2;
   opacity: 0; transition: opacity .2s ease;
 }
@@ -151,25 +155,25 @@ h1 { font-size: 26px; font-weight: 800; letter-spacing: 1px; }
 }
 @media (min-width: 640px) { .price-wrap { grid-template-columns: 1fr 1fr; } }
 .price-card {
-  background: #fff; border: 1px solid #ecdfd5; border-radius: 18px;
+  background: rgba(255, 255, 255, .07); border: 1px solid rgba(255, 255, 255, .13); border-radius: 18px;
   padding: 24px 22px;
-  box-shadow: 0 8px 24px rgba(60, 40, 30, .06);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .25);
 }
-.price-card .name { font-size: 18px; font-weight: 800; }
+.price-card .name { font-size: 18px; font-weight: 800; color: #f7f0ea; }
 .price-card .meta {
   display: inline-block; margin-top: 8px;
-  background: #fbece7; color: #c46554;
+  background: rgba(217, 139, 118, .16); color: #e8a390;
   font-size: 12px; font-weight: 600;
   padding: 3px 12px; border-radius: 999px;
 }
 .price-card ul { list-style: none; margin-top: 12px; }
-.price-card li { font-size: 14px; color: #6f5547; padding: 4px 0; }
-.price-card li::before { content: "✓  "; color: #c46554; font-weight: 700; }
-.price { margin-top: 14px; font-size: 30px; font-weight: 800; }
-.price small { font-size: 13px; color: #a4877a; font-weight: 500; }
+.price-card li { font-size: 14px; color: #ddcdc4; padding: 4px 0; }
+.price-card li::before { content: "✓  "; color: #e8a390; font-weight: 700; }
+.price { margin-top: 14px; font-size: 30px; font-weight: 800; color: #f7f0ea; }
+.price small { font-size: 13px; color: #bda89e; font-weight: 500; }
 .note {
   grid-column: 1 / -1;
-  text-align: center; color: #a4877a; font-size: 13px;
+  text-align: center; color: #cbb8ae; font-size: 13px;
   padding: 4px 0 0;
 }
 .cta {
@@ -178,17 +182,17 @@ h1 { font-size: 26px; font-weight: 800; letter-spacing: 1px; }
   margin: 8px auto 0;
   padding: 13px 36px;
   border: none; border-radius: 999px;
-  background: linear-gradient(135deg, #d98b76, #c46554);
+  background: linear-gradient(135deg, #d98b76, #a85555);
   color: #fff; font-size: 15px; font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 8px 20px rgba(196, 101, 84, .30);
+  box-shadow: 0 8px 20px rgba(217, 139, 118, .35);
 }
 .cta:active { transform: scale(.97); }
 
 /* ===== 页脚 / 弹层 / 提示 ===== */
 footer {
   text-align: center; padding: 10px 20px 44px;
-  color: #a4877a; font-size: 12px; line-height: 2;
+  color: #bda89e; font-size: 12px; line-height: 2;
 }
 .lightbox {
   position: fixed; inset: 0; z-index: 100;
@@ -261,7 +265,7 @@ footer {
 <body>
 
 <header class="hero">
-  <div class="avatar">木</div>
+  <img class="avatar" src="img/本人头像.jpg?v=3" alt="木木头像">
   <h1>木木<span class="badge">独立女摄</span></h1>
   <p class="slogan">用镜头记录你的美好瞬间</p>
   <div class="tags">
